@@ -1,24 +1,26 @@
 import express from "express"
-import { Memory } from "../Model/Memory";
+import { Memory } from "../Model/Memory.js";
 
-const router = express.Router;
+const router = express.Router();
 
 router.get("/", (req,res) =>{
-    res.send("Memory");
+    res.send("Memory Home page");
 })
 
-router.post("/",(req,res)=>{
+router.post("/", async(req, res)=>{
     try {
         const {title, value} = req.body;
         if(!title || !value){
-            res.Status(400).send("Send All field");
+            res.status(400).send("Send All field");
         }
 
-        const newmemory = Memory.Create({
+        const newmemory = await Memory.create({
             title,
             value
         })
-        res.Status(200).send("memory Created SuccessFully")
+        res.status(200).send("memory Created SuccessFully")
     } catch (error) {
-        res.send(error.message())
+        res.send(error.message)
     }})
+
+    export default router;
