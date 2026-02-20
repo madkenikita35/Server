@@ -53,5 +53,10 @@ app.post("/", async(req, res)=>{
         res.send(error.message)
     }})
 
+    app.delete("/:id", async(req, res) => {
+        const {id} = req.params;
+        const deleteMem = await Memory.findByIdAndDelete(id);
+        res.status(200).send("Deleted Successfuly");
+    })
 
 
