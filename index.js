@@ -2,17 +2,23 @@ import express from "express"
 import { Router } from "express";
 import mongoose from "mongoose";
 import { Memory } from "./Model/Memory.js";
+import LoginRoute from "./routes/LoginRoutes.js"
+
 //import router from "../routes/MemoryRoutes.js";
 import cors from "cors"
+
+const PORT = 5000;
+const MONGO_URI = "mongodb+srv://Nikita:Nikita@memory.nzssf9q.mongodb.net/?appName=Memory"
 
 const app = express();
 app.use(express.json())
 app.use(cors())
 
+app.use("/login", LoginRoute)
+
 //app.use("/", router)
 
-const PORT = 5000;
-const MONGO_URI = "mongodb+srv://Nikita:Nikita@memory.nzssf9q.mongodb.net/?appName=Memory"
+
 
 try {
     mongoose.connect(MONGO_URI)
