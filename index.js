@@ -1,10 +1,8 @@
 import express from "express"
-import { Router } from "express";
 import mongoose from "mongoose";
 import { Memory } from "./Model/Memory.js";
 import LoginRoute from "./routes/LoginRoutes.js"
-
-//import router from "../routes/MemoryRoutes.js";
+import memRoutes from "./routes/MemoryRoutes.js"
 import cors from "cors"
 
 const PORT = 5000;
@@ -14,9 +12,9 @@ const app = express();
 app.use(express.json())
 app.use(cors())
 
-app.use("/login", LoginRoute)
+app.use("/", LoginRoute)
 
-//app.use("/", router)
+app.use("/memory", memRoutes)
 
 
 
